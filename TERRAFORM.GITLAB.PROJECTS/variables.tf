@@ -13,3 +13,7 @@ variable "GITLAB_PROJECT_NAME" {
 variable "GITLAB_SHARED_RUNNER_ID" {
   type = number
 }
+
+variable "OCTOAPI" {
+  type = string
+}

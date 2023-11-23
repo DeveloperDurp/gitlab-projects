@@ -20,6 +20,8 @@ resource "gitlab_project" "project" {
   squash_option                         = "default_on"
   ci_config_path                        = ".gitlab/.gitlab-ci.yml"
   shared_runners_enabled                = false
+  visibility_level                      = "public"
+  ci_forward_deployment_enabled         = true
 }
 
 resource "gitlab_branch_protection" "master" {
@@ -41,4 +43,12 @@ resource "gitlab_branch_protection" "release" {
 resource "gitlab_project_runner_enablement" "k3s" {
   project   = gitlab_project.project.id
   runner_id = var.GITLAB_SHARED_RUNNER_ID
+}
+
+resource "gitlab_project_variable" "OCTOAPI" {
+  project   = gitlab_project.project.id
+  key       = "OCTOAPI"
+  value     = var.OCTOAPI
+  protected = false
+  masked    = true
 }
