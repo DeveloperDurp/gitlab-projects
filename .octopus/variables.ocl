@@ -7,5 +7,5 @@ variable "TF_PACKAGE" {
 }
 
 variable "TF_CONTAINER" {
-    value "developerdurp/gitlab-projects" {}
+    value "developerdurp/gitlab-projects:1.1.0-dev0005" {}
 }
