@@ -1,7 +1,3 @@
-variable "GITLAB_SHARED_RUNNER_ID" {
-    value "18379541" {}
-}
-
 variable "TF_CONTAINER" {
     value "developerdurp/octopus-packages" {}
 }
