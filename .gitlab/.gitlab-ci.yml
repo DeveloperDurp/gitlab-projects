@@ -1,5 +1,7 @@
 include:
   - project: 'developerdurp/yml'
     ref: 'main'
-    file: 'pipelines/gitlab_generic_packages.yml'
+    file:
+      - 'pipelines/gitlab_generic_packages.yml'
+      - 'pipelines/docker-build-generic.yml'
   - local: .variables.yml
