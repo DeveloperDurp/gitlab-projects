@@ -7,5 +7,5 @@ variable "TF_PACKAGE" {
 }
 
 variable "TF_CONTAINER" {
-    value "developerdurp/octopus-build-container:latest" {}
+    value "developerdurp/octopus-build-container:22.4.0" {}
 }
