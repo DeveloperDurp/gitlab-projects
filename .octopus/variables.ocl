@@ -13,3 +13,14 @@ variable "TF_INIT" {
 variable "GITLAB_PROJECT_ID" {
     value "52389386" {}
 }
+
+variable "RUNSPACE_GITLAB_PROJECT_IMPORT" {
+    value {
+        process = ["runbook/import-project"]
+
+        prompt {
+            description = ""
+            label = ""
+        }
+    }
+}
