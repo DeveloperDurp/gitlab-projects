@@ -19,3 +19,8 @@ variable "OCTOAPI" {
 variable "OCTO_TENANT_ID" {
   type = string
 }
+
+variable "Development" {
+  type = bool
+  default = false
+}
