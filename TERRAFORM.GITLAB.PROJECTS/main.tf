@@ -1,5 +1,5 @@
 terraform {
-  backend "http" {}
+  #backend "http" {}
   required_providers {
     gitlab = {
       source  = "gitlabhq/gitlab"
@@ -41,11 +41,13 @@ resource "gitlab_branch_protection" "release" {
 }
 
 resource "gitlab_project_runner_enablement" "k3s" {
+  count = var.GITLAB_SHARED_RUNNER_ID != 0 ? 1 : 0 
   project   = gitlab_project.project.id
   runner_id = var.GITLAB_SHARED_RUNNER_ID
 }
 
 resource "gitlab_project_variable" "OCTOAPI" {
+  count = var.OCTOAPI != "" ? 1 : 0 
   project   = gitlab_project.project.id
   key       = "OCTOAPI"
   value     = var.OCTOAPI
