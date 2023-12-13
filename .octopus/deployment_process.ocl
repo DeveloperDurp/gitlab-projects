@@ -16,7 +16,7 @@ step "plan-to-apply-a-terraform-template" {
             Octopus.Action.Terraform.AllowPluginDownloads = "True"
             Octopus.Action.Terraform.AzureAccount = "False"
             Octopus.Action.Terraform.EnvVariables = "{}"
-            Octopus.Action.Terraform.FileSubstitution = "*.tfvars"
+            Octopus.Action.Terraform.FileSubstitution = "variables.tfvars"
             Octopus.Action.Terraform.GoogleCloudAccount = "False"
             Octopus.Action.Terraform.ManagedAccount = "None"
             Octopus.Action.Terraform.PlanJsonOutput = "False"
