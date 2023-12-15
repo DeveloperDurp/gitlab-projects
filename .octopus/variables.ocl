@@ -22,5 +22,5 @@ variable "RUNSPACE_GITLAB_PROJECT_IMPORT" {
 }
 
 variable "TF_INIT" {
-    value "-backend-config=\"address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}\" -backend-config=\"lock_address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}/lock\" -backend-config=\"unlock_address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}/lock\" -backend-config=\"username=developerdurp\" -backend-config=\"password=#{GITLAB_TOKEN}\" -backend-config=\"lock_method=POST\" -backend-config=\"unlock_method=DELETE\"  -backend-config=\"retry_wait_min=5\" -var-file=variables.tfvar" {}
+    value "-backend-config=\"address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}\" -backend-config=\"lock_address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}/lock\" -backend-config=\"unlock_address=https://gitlab.com/api/v4/projects/#{GITLAB_PROJECT_ID}/terraform/state/#{Octopus.Deployment.Tenant.Id}/lock\" -backend-config=\"username=developerdurp\" -backend-config=\"password=#{GITLAB_TOKEN}\" -backend-config=\"lock_method=POST\" -backend-config=\"unlock_method=DELETE\"  -backend-config=\"retry_wait_min=5\"" {}
 }
