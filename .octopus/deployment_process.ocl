@@ -39,7 +39,9 @@ step "terraform-apply" {
         properties = {
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Template.Id = "ActionTemplates-2"
-            Octopus.Action.Template.Version = "0"
+            Octopus.Action.Template.Version = "1"
+            TF_INIT = "#{TF_INIT}"
+            TF_PACKAGE = "#{TF_PACKAGE}"
         }
         worker_pool_variable = ""
 
