@@ -2,42 +2,17 @@ step "plan-to-apply-a-terraform-template" {
     name = "Terraform Plan"
 
     action "terraform-plan" {
-        action_type = "Octopus.TerraformPlan"
         is_required = true
         properties = {
-            Octopus.Action.GoogleCloud.ImpersonateServiceAccount = "False"
-            Octopus.Action.GoogleCloud.UseVMServiceAccount = "True"
-            Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "nexus-nuget"
-            Octopus.Action.Package.PackageId = "#{TF_PACKAGE}"
             Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptSource = "Package"
-            Octopus.Action.Terraform.AdditionalActionParams = "-var-file=./variables.tfvars"
-            Octopus.Action.Terraform.AdditionalInitParams = "#{TF_INIT}"
-            Octopus.Action.Terraform.AllowPluginDownloads = "True"
-            Octopus.Action.Terraform.AzureAccount = "False"
-            Octopus.Action.Terraform.EnvVariables = "{}"
-            Octopus.Action.Terraform.FileSubstitution = "variables.tfvars"
-            Octopus.Action.Terraform.GoogleCloudAccount = "False"
-            Octopus.Action.Terraform.ManagedAccount = "None"
-            Octopus.Action.Terraform.PlanJsonOutput = "False"
-            Octopus.Action.Terraform.RunAutomaticFileSubstitution = "False"
-            OctopusUseBundledTooling = "False"
+            Octopus.Action.Template.Id = "ActionTemplates-1"
+            Octopus.Action.Template.Version = "0"
         }
         worker_pool_variable = ""
 
         container {
             feed = "nexus"
             image = "#{TF_Container}"
-        }
-
-        packages {
-            acquisition_location = "Server"
-            feed = "nexus-nuget"
-            package_id = "#{TF_PACKAGE}"
-            properties = {
-                SelectionMode = "immediate"
-            }
         }
     }
 }
@@ -46,16 +21,11 @@ step "approve-plan" {
     name = "Approve Plan"
 
     action {
-        action_type = "Octopus.Manual"
         is_required = true
         properties = {
-            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
-            Octopus.Action.Manual.Instructions = <<-EOT
-                ```
-                #{Octopus.Action[Terraform Plan].Output.TerraformPlanOutput}
-                ```
-                EOT
             Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-3"
+            Octopus.Action.Template.Version = "0"
         }
     }
 }
@@ -64,41 +34,16 @@ step "terraform-apply" {
     name = "Terraform Apply"
 
     action {
-        action_type = "Octopus.TerraformApply"
         properties = {
-            Octopus.Action.GoogleCloud.ImpersonateServiceAccount = "False"
-            Octopus.Action.GoogleCloud.UseVMServiceAccount = "True"
-            Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "nexus-nuget"
-            Octopus.Action.Package.PackageId = "#{TF_PACKAGE}"
             Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptSource = "Package"
-            Octopus.Action.Terraform.AdditionalActionParams = "-var-file=./variables.tfvars"
-            Octopus.Action.Terraform.AdditionalInitParams = "#{TF_INIT}"
-            Octopus.Action.Terraform.AllowPluginDownloads = "True"
-            Octopus.Action.Terraform.AzureAccount = "False"
-            Octopus.Action.Terraform.EnvVariables = "{}"
-            Octopus.Action.Terraform.FileSubstitution = "variables.tfvars"
-            Octopus.Action.Terraform.GoogleCloudAccount = "False"
-            Octopus.Action.Terraform.ManagedAccount = "None"
-            Octopus.Action.Terraform.PlanJsonOutput = "False"
-            Octopus.Action.Terraform.RunAutomaticFileSubstitution = "False"
-            OctopusUseBundledTooling = "False"
+            Octopus.Action.Template.Id = "ActionTemplates-2"
+            Octopus.Action.Template.Version = "0"
         }
         worker_pool_variable = ""
 
         container {
             feed = "nexus"
             image = "#{TF_Container}"
-        }
-
-        packages {
-            acquisition_location = "Server"
-            feed = "nexus-nuget"
-            package_id = "#{TF_PACKAGE}"
-            properties = {
-                SelectionMode = "immediate"
-            }
         }
     }
 }
