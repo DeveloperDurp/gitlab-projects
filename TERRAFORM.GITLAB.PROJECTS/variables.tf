@@ -11,6 +11,11 @@ variable "GITLAB_SHARED_RUNNER_ID" {
   default = 0
 }
 
+variable "Enable_OCTOAPI" {
+  type = bool
+  default = false
+}
+
 variable "OCTOAPI" {
   type = string
   default = ""

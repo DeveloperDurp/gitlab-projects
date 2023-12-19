@@ -35,11 +35,12 @@ resource "gitlab_project_runner_enablement" "k3s" {
   runner_id = octopusdeploy_tenant_common_variable.gitlabrunnerid.value
 }
 
-#resource "gitlab_project_variable" "OCTOAPI" {
-#  count = var.OCTOAPI != "" ? 1 : 0 
-#  project   = gitlab_project.project.id
-#  key       = "OCTOAPI"
-#  value     = var.OCTOAPI
-#  protected = false
-#  masked    = true
-#}
+
+resource "gitlab_project_variable" "OCTOAPI" {
+  count = var.Enable_OCTOAPI ? 1 : 0 
+  project   = gitlab_project.project.id
+  key       = "OCTOAPI"
+  value     = var.OCTOAPI
+  protected = false
+  masked    = true
+}
