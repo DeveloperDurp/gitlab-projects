@@ -32,9 +32,3 @@ resource "octopusdeploy_tenant_common_variable" "gitlabprojectname" {
   value = octopusdeploy_tenant.tenant.name
 }
 
-resource "octopusdeploy_tenant_common_variable" "gitlabrunnerid" {
-  library_variable_set_id = "LibraryVariableSets-2"
-  template_id = "25732879-3567-4d0b-9aad-2769befabf42"
-  tenant_id = octopusdeploy_tenant.tenant.id
-  value = var.GITLAB_SHARED_RUNNER_ID
-}
