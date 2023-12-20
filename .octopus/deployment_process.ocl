@@ -6,7 +6,7 @@ step "plan-to-apply-a-terraform-template" {
         properties = {
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Template.Id = "ActionTemplates-1"
-            Octopus.Action.Template.Version = "1"
+            Octopus.Action.Template.Version = "3"
         }
         worker_pool_variable = ""
 
