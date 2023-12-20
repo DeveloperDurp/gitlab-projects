@@ -30,12 +30,6 @@ resource "gitlab_branch_protection" "release" {
   allow_force_push   = false
 }
 
-resource "gitlab_project_runner_enablement" "k3s" {
-  project   = gitlab_project.project.id
-  runner_id = octopusdeploy_tenant_common_variable.gitlabrunnerid.value
-}
-
-
 resource "gitlab_project_variable" "OCTOAPI" {
   count = var.Enable_OCTOAPI ? 1 : 0 
   project   = gitlab_project.project.id
